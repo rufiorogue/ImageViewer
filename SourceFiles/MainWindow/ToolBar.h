@@ -1,6 +1,5 @@
 #pragma once
 
-#include <QAction>
 #include <QToolBar>
 
 class ToolBar : public QToolBar {
@@ -10,6 +9,7 @@ public:
 
     QAction* fullscreen();
     QAction* openFile();
+    QAction* saveFile();
     QAction* playSlideshow();
     QAction* zoomFit();
     QAction* zoomOriginal();
@@ -22,7 +22,7 @@ private:
     QAction* m_fullScreen;
     QAction* m_openFile;
     QAction* m_playSlideshow;
-    QAction* m_saveFileAs;
+    QAction* m_saveFile;
     QAction* m_zoomFit;
     QAction* m_zoomOriginal;
     QWidget* m_spacerOne;

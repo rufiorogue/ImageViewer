@@ -31,6 +31,7 @@ private:
 
     void openImage();
     void openPreferences();
+    void saveImage();
     void showMenuBar(bool value);
     void showStatusBar(bool value);
     void showToolBar(bool value);

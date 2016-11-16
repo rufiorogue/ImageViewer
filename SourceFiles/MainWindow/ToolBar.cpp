@@ -7,7 +7,7 @@ ToolBar::ToolBar(QWidget* parent)
     m_fullScreen = new QAction(this);
     m_openFile = new QAction(this);
     m_playSlideshow = new QAction(this);
-    m_saveFileAs = new QAction(this);
+    m_saveFile = new QAction(this);
     m_spacerOne = new QWidget(this);
     m_spacerTwo = new QWidget(this);
     m_zoomFit = new QAction(this);
@@ -39,9 +39,9 @@ void ToolBar::setActions()
     addSeparator();
 
     // Save Image As
-    m_saveFileAs->setIcon(QIcon("Images/save-file-as.png"));
-    m_saveFileAs->setText("Save a copy of the image");
-    addAction(m_saveFileAs);
+    m_saveFile->setIcon(QIcon("Images/save-file-as.png"));
+    m_saveFile->setText("Save a copy of the image");
+    addAction(m_saveFile);
 
     // Delete Image
     m_deleteFile->setIcon(QIcon("Images/delete-file.png"));
@@ -103,4 +103,9 @@ QAction* ToolBar::fullscreen()
 QAction* ToolBar::playSlideshow()
 {
     return (m_playSlideshow);
+}
+
+QAction* ToolBar::saveFile()
+{
+    return (m_saveFile);
 }

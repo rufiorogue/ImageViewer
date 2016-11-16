@@ -86,6 +86,8 @@ void MainWindow::setConnections()
         &MainWindow::toggleFullscreen);
     connect(m_toolBar->openFile(), &QAction::triggered, this,
         &MainWindow::openImage);
+    connect(m_toolBar->saveFile(), &QAction::triggered, this,
+        &MainWindow::saveImage);
     connect(m_toolBar->zoomFit(), &QAction::triggered, m_imageView,
         &ImageView::zoomFit);
     connect(m_toolBar->zoomOriginal(), &QAction::triggered, m_imageView,
@@ -174,4 +176,15 @@ void MainWindow::showMenuBar(bool value)
     (value) ? m_menuBar->show() : m_menuBar->hide();
     m_menuView->showMenuBar()->setChecked(value);
     m_preferences->setShowMenuBar(value);
+}
+
+void MainWindow::saveImage()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, "Save Image",
+        m_imageView->fileName(), "Images (*.bmp *.jpg *.png)");
+    if (fileName.isNull()) {
+        return;
+    }
+
+    m_imageView->saveImage(fileName);
 }

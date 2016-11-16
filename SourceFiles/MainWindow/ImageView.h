@@ -16,6 +16,7 @@ public:
     void setZoomStep(int value);
 
     void loadImage(QString& fileName);
+    void saveImage(QString& fileName);
     void rotateLeft();
     void rotateRight();
     void zoomFit();
@@ -38,6 +39,7 @@ private:
     double m_zoomIn;
     double m_zoomOut;
     double m_zoomStep;
+    QImage m_image;
     QString m_fileName;
 
     QGraphicsScene* m_scene;

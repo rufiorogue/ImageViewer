@@ -16,13 +16,12 @@ void ImageView::loadImage(QString& fileName)
 {
     m_fileName = fileName;
 
-    QImage image;
-    if (!image.load(fileName)) {
+    if (!m_image.load(fileName)) {
         return;
     }
 
     QPixmap pixmap;
-    if (!pixmap.convertFromImage(image)) {
+    if (!pixmap.convertFromImage(m_image)) {
         return;
     }
 
@@ -162,4 +161,11 @@ void ImageView::rotateLeft()
 void ImageView::rotateRight()
 {
     rotate(90);
+}
+
+void ImageView::saveImage(QString& fileName)
+{
+    if (!m_image.save(fileName)) {
+        return;
+    }
 }
