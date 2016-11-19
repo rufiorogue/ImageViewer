@@ -14,6 +14,10 @@ ImageView::~ImageView()
 
 void ImageView::loadImage(QString& fileName)
 {
+    if (!m_fileName.isNull()) {
+        closeImage();
+    }
+
     m_fileName = fileName;
 
     if (!m_image.load(fileName)) {
@@ -172,6 +176,7 @@ void ImageView::saveImage(QString& fileName)
 
 void ImageView::closeImage()
 {
+    zoomOriginal();
     m_scene->clear();
     m_fileName = QString();
     emit updateStatusBar(this);
