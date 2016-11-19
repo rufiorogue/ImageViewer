@@ -15,7 +15,10 @@ find_package(Qt5Widgets REQUIRED)
 # Turn On Automoc
 set(CMAKE_AUTOMOC ON)
 
-set(SOURCE_FILES SourceFiles/Main.cpp SourceFiles/MainWindow.cpp SourceFiles/MainWindow.h SourceFiles/MainWindow/ToolBar.cpp SourceFiles/MainWindow/ToolBar.h SourceFiles/MainWindow/ImageView.cpp SourceFiles/MainWindow/ImageView.h SourceFiles/MainWindow/StatusBar.cpp SourceFiles/MainWindow/StatusBar.h SourceFiles/PreferencesDialog.cpp SourceFiles/PreferencesDialog.h SourceFiles/PreferencesDialog/Control.cpp SourceFiles/PreferencesDialog/Control.h SourceFiles/PreferencesDialog/Slideshow.cpp SourceFiles/PreferencesDialog/Slideshow.h SourceFiles/MainWindow/Menu/File.cpp SourceFiles/MainWindow/Menu/File.h SourceFiles/MainWindow/Menu/Edit.cpp SourceFiles/MainWindow/Menu/Edit.h SourceFiles/MainWindow/Menu/View.cpp SourceFiles/MainWindow/Menu/View.h SourceFiles/Preferences.cpp SourceFiles/Preferences.h SourceFiles/PreferencesDialog/Display.cpp SourceFiles/PreferencesDialog/Display.h)
+# Get Source Files
+file(GLOB_RECURSE SOURCE_FILES SourceFiles/*.cpp)
+
+# Add Executable
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 # Link Libraries
