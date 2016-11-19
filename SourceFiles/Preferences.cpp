@@ -12,6 +12,8 @@ Preferences::~Preferences()
 
 void Preferences::load()
 {
+    m_bgColorSlideshow = value("bgColorSlideshow", "#ffffff").toString();
+    m_bgColorView = value("bgColorView", "#ffffff").toString();
     m_showMenuBar = value("showMenuBar", true).toBool();
     m_showStatusBar = value("showStatusBar", true).toBool();
     m_showToolBar = value("showToolBar", true).toBool();
@@ -21,6 +23,8 @@ void Preferences::load()
 
 void Preferences::save()
 {
+    setValue("bgColorSlideshow", m_bgColorSlideshow);
+    setValue("bgColorView", m_bgColorView);
     setValue("showMenuBar", m_showMenuBar);
     setValue("showStatusBar", m_showStatusBar);
     setValue("showToolBar", m_showToolBar);
@@ -76,4 +80,24 @@ int Preferences::timeout()
 void Preferences::setTimeout(int value)
 {
     m_timeout = value;
+}
+
+QString Preferences::bgColorView()
+{
+    return (m_bgColorView);
+}
+
+void Preferences::setBgColorView(QString value)
+{
+    m_bgColorView = value;
+}
+
+QString Preferences::bgColorSlideshow()
+{
+    return (m_bgColorSlideshow);
+}
+
+void Preferences::setBgColorSlideshow(QString value)
+{
+    m_bgColorSlideshow = value;
 }

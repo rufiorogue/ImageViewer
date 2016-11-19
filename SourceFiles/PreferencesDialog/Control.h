@@ -16,7 +16,7 @@ public:
 
 private:
     void setup();
-    void setSignals();
+    void setConnections();
     void setWidgets();
 
     void zoomStepChanged(int value);

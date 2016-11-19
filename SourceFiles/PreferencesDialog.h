@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 
 class Control;
+class Display;
 class Preferences;
 class Slideshow;
 
@@ -23,6 +24,7 @@ private:
     void setWidgets();
 
     Control* m_control;
+    Display* m_display;
     Preferences* m_preferences;
     Slideshow* m_slideshow;
     QDialogButtonBox* m_buttonBox;

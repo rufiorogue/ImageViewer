@@ -17,7 +17,7 @@ Control::~Control()
 void Control::setup()
 {
     setLayout(m_layout);
-    setSignals();
+    setConnections();
     setWidgets();
 }
 
@@ -29,7 +29,7 @@ void Control::setWidgets()
     m_layout->addWidget(m_zoomStepSlider);
 }
 
-void Control::setSignals()
+void Control::setConnections()
 {
     connect(m_zoomStepSlider, &QSlider::valueChanged, this,
         &Control::zoomStepChanged);

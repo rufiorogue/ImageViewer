@@ -17,7 +17,7 @@ Slideshow::~Slideshow()
 void Slideshow::setup()
 {
     setLayout(m_layout);
-    setSignals();
+    setConnections();
     setWidgets();
 }
 
@@ -39,7 +39,7 @@ void Slideshow::setTimeout(int value)
     m_timeoutSlider->setValue(value);
 }
 
-void Slideshow::setSignals()
+void Slideshow::setConnections()
 {
     connect(m_timeoutSlider, &QSlider::valueChanged, this,
         &Slideshow::timeoutChanged);

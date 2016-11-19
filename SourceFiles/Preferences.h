@@ -10,12 +10,16 @@ public:
     void load();
     void save();
 
+    QString bgColorSlideshow();
+    QString bgColorView();
     bool showMenu();
     bool showStatusBar();
     bool showToolBar();
     int zoomStep();
     int timeout();
 
+    void setBgColorSlideshow(QString value);
+    void setBgColorView(QString value);
     void setShowMenuBar(bool value);
     void setShowStatusBar(bool value);
     void setShowToolBar(bool value);
@@ -28,4 +32,6 @@ private:
     bool m_showToolBar;
     int m_timeout;
     int m_zoomStep;
+    QString m_bgColorView;
+    QString m_bgColorSlideshow;
 };
