@@ -15,6 +15,10 @@ StatusBar::~StatusBar()
 void StatusBar::update(ImageView* imageView)
 {
     if (imageView->fileName().isNull()) {
+        m_message->setText(QString());
+        m_message->update();
+        addWidget(m_message);
+
         return;
     }
 

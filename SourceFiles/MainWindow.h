@@ -4,6 +4,7 @@
 #include <QDesktopWidget>
 #include <QFileDialog>
 #include <QMainWindow>
+#include <QMessageBox>
 #include <QMenuBar>
 
 class ImageView;
@@ -29,6 +30,7 @@ private:
     void setPreferences();
     void setSize();
 
+    void deleteImage();
     void openImage();
     void openPreferences();
     void saveImage();

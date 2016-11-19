@@ -15,6 +15,7 @@ public:
 
     void setZoomStep(int value);
 
+    void closeImage();
     void loadImage(QString& fileName);
     void saveImage(QString& fileName);
     void rotateLeft();

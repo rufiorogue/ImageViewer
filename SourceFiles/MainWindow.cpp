@@ -63,11 +63,16 @@ void MainWindow::openImage()
 
 void MainWindow::setConnections()
 {
+    // Menu -> Edit
     connect(m_menuEdit->preferences(), &QAction::triggered, this,
         &MainWindow::openPreferences);
+
+    // Menu -> File
     connect(m_menuFile->open(), &QAction::triggered, this,
         &MainWindow::openImage);
     connect(m_menuFile->quit(), &QAction::triggered, this, &MainWindow::close);
+
+    // Menu -> View
     connect(m_menuView->fullscreen(), &QAction::triggered, this,
         &MainWindow::toggleFullscreen);
     connect(m_menuView->rotateLeft(), &QAction::triggered, m_imageView,
@@ -82,6 +87,10 @@ void MainWindow::setConnections()
         &MainWindow::showToolBar);
     connect(m_imageView, &ImageView::updateStatusBar, m_statusBar,
         &StatusBar::update);
+
+    // ToolBar
+    connect(m_toolBar->deleteFile(), &QAction::triggered, this,
+        &MainWindow::deleteImage);
     connect(m_toolBar->fullscreen(), &QAction::triggered, this,
         &MainWindow::toggleFullscreen);
     connect(m_toolBar->openFile(), &QAction::triggered, this,
@@ -187,4 +196,20 @@ void MainWindow::saveImage()
     }
 
     m_imageView->saveImage(fileName);
+}
+
+void MainWindow::deleteImage()
+{
+    QFileInfo fileInfo(m_imageView->fileName());
+
+    int answer = QMessageBox::question(this, QString(),
+        "Are you sure you want to send image '" + fileInfo.fileName()
+            + "' to trash?",
+        QMessageBox::Cancel | QMessageBox::Ok);
+
+    if (answer == QMessageBox::Ok) {
+        QFile::remove(fileInfo.absoluteFilePath());
+    }
+
+    m_imageView->closeImage();
 }

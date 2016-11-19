@@ -169,3 +169,10 @@ void ImageView::saveImage(QString& fileName)
         return;
     }
 }
+
+void ImageView::closeImage()
+{
+    m_scene->clear();
+    m_fileName = QString();
+    emit updateStatusBar(this);
+}

@@ -7,6 +7,7 @@ public:
     ToolBar(QWidget* parent = Q_NULLPTR);
     ~ToolBar();
 
+    QAction* deleteFile();
     QAction* fullscreen();
     QAction* openFile();
     QAction* saveFile();

@@ -109,3 +109,8 @@ QAction* ToolBar::saveFile()
 {
     return (m_saveFile);
 }
+
+QAction* ToolBar::deleteFile()
+{
+    return (m_deleteFile);
+}
