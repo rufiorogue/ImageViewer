@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QDebug>
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QFileDialog>
@@ -7,6 +8,7 @@
 #include <QMessageBox>
 #include <QMenuBar>
 
+class File;
 class ImageView;
 class Preferences;
 class StatusBar;
@@ -39,11 +41,14 @@ private:
     void showToolBar(bool value);
     void toggleFullscreen();
 
+    void updateTitleBar(QString string);
+
     void keyPressEvent(QKeyEvent* event);
 
     const int WIDTH = 30; // %
     const int HEIGHT = 30; // %
 
+    File* m_file;
     ImageView* m_imageView;
     Preferences* m_preferences;
     QMenuBar* m_menuBar;

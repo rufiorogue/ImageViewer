@@ -7,12 +7,14 @@
 #include "MainWindow/Menu/File.h"
 #include "MainWindow/Menu/View.h"
 
+#include "File.h"
 #include "Preferences.h"
 #include "PreferencesDialog.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
 {
+    m_file = new File();
     m_imageView = new ImageView(this);
     m_menuBar = menuBar();
     m_menuEdit = new Menu::Edit(this);
@@ -28,6 +30,8 @@ MainWindow::MainWindow(QWidget* parent)
 MainWindow::~MainWindow()
 {
     m_preferences->save();
+
+    delete m_file;
 }
 
 void MainWindow::setup()
@@ -39,6 +43,7 @@ void MainWindow::setup()
     setPreferences();
     setSize();
     setStatusBar(m_statusBar);
+    setWindowTitle("Image Viewer");
 }
 
 void MainWindow::setSize()
@@ -58,11 +63,15 @@ void MainWindow::openImage()
         return;
     }
 
+    m_file->current(fileName);
     m_imageView->loadImage(fileName);
 }
 
 void MainWindow::setConnections()
 {
+    // File
+    connect(m_file, &File::updateTitleBar, this, &MainWindow::updateTitleBar);
+
     // Menu -> Edit
     connect(m_menuEdit->preferences(), &QAction::triggered, this,
         &MainWindow::openPreferences);
@@ -225,4 +234,9 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
     }
 
     QWidget::keyPressEvent(event);
+}
+
+void MainWindow::updateTitleBar(QString string)
+{
+    setWindowTitle("Image Viewer - " + string);
 }
