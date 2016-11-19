@@ -31,6 +31,7 @@ void ImageView::loadImage(QString& fileName)
 
     m_scene->clear();
     m_scene->addPixmap(pixmap);
+    m_scene->setSceneRect(QRect(QPoint(0, 0), m_image.size()));
 
     recalculate();
 
