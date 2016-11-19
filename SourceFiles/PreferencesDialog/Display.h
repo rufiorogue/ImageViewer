@@ -2,8 +2,8 @@
 
 #include <QColorDialog>
 #include <QLabel>
+#include <QLayout>
 #include <QPushButton>
-#include <QVBoxLayout>
 #include <QWidget>
 
 class Display : public QWidget {
@@ -25,8 +25,7 @@ private:
     void pickBackgroundColorSlideshow();
     void pickBackgroundColorView();
 
-    QHBoxLayout* backgroundColorSlideshow();
-    QHBoxLayout* backgroundColorView();
+    QGridLayout* backgroundColorSelection();
 
     QString m_colorView;
     QString m_colorSlideshow;

@@ -27,18 +27,7 @@ void Display::setWidgets()
         "QPushButton { background-color: #ffffff; }");
 
     m_layout->addWidget(new QLabel("<b>Background color</b>", this));
-    m_layout->addLayout(backgroundColorView());
-    m_layout->addLayout(backgroundColorSlideshow());
-}
-
-QHBoxLayout* Display::backgroundColorView()
-{
-    QHBoxLayout* layout = new QHBoxLayout(m_layout->widget());
-
-    layout->addWidget(new QLabel("\tView mode"));
-    layout->addWidget(m_selectColorView);
-
-    return (layout);
+    m_layout->addLayout(backgroundColorSelection());
 }
 
 void Display::setConnections()
@@ -59,12 +48,15 @@ void Display::pickBackgroundColorView()
     setBgColorView(color.name());
 }
 
-QHBoxLayout* Display::backgroundColorSlideshow()
+QGridLayout* Display::backgroundColorSelection()
 {
-    QHBoxLayout* layout = new QHBoxLayout(m_layout->widget());
+    QGridLayout* layout = new QGridLayout(m_layout->widget());
 
-    layout->addWidget(new QLabel("\tSlideshow mode"));
-    layout->addWidget(m_selectColorSlideshow);
+    layout->addWidget(new QLabel("\tView mode"), 0, 0);
+    layout->addWidget(m_selectColorView, 0, 1);
+
+    layout->addWidget(new QLabel("\tSlideshow mode"), 1, 0);
+    layout->addWidget(m_selectColorSlideshow, 1, 1);
 
     return (layout);
 }
