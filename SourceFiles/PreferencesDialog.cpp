@@ -1,6 +1,7 @@
 #include "PreferencesDialog.h"
 
 #include "PreferencesDialog/Control.h"
+#include "PreferencesDialog/Slideshow.h"
 
 #include "Preferences.h"
 
@@ -11,6 +12,7 @@ PreferencesDialog::PreferencesDialog(Preferences* preferences, QWidget* parent)
     m_control = new Control(this);
     m_layout = new QVBoxLayout(this);
     m_preferences = preferences;
+    m_slideshow = new Slideshow(this);
     m_tabWidget = new QTabWidget(this);
 
     setup();
@@ -30,6 +32,7 @@ void PreferencesDialog::setup()
 void PreferencesDialog::setWidgets()
 {
     m_tabWidget->addTab(m_control, "Control");
+    m_tabWidget->addTab(m_slideshow, "Slideshow");
     m_layout->addWidget(m_tabWidget);
 
     m_buttonBox->setStandardButtons(QDialogButtonBox::Ok
@@ -40,10 +43,12 @@ void PreferencesDialog::setWidgets()
 void PreferencesDialog::load()
 {
     m_control->setZoomStep(m_preferences->zoomStep());
+    m_slideshow->setTimeout(m_preferences->timeout());
 }
 
 void PreferencesDialog::save()
 {
+    m_preferences->setTimeout(m_slideshow->timeout());
     m_preferences->setZoomStep(m_control->zoomStep());
 }
 

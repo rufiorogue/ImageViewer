@@ -15,6 +15,7 @@ void Preferences::load()
     m_showMenuBar = value("showMenuBar", true).toBool();
     m_showStatusBar = value("showStatusBar", true).toBool();
     m_showToolBar = value("showToolBar", true).toBool();
+    m_timeout = value("timeout", 5).toInt();
     m_zoomStep = value("zoomStep", 25).toInt();
 }
 
@@ -23,6 +24,7 @@ void Preferences::save()
     setValue("showMenuBar", m_showMenuBar);
     setValue("showStatusBar", m_showStatusBar);
     setValue("showToolBar", m_showToolBar);
+    setValue("timeout", m_timeout);
     setValue("zoomStep", m_zoomStep);
 }
 
@@ -64,4 +66,14 @@ bool Preferences::showMenu()
 void Preferences::setShowMenuBar(bool value)
 {
     m_showMenuBar = value;
+}
+
+int Preferences::timeout()
+{
+    return (m_timeout);
+}
+
+void Preferences::setTimeout(int value)
+{
+    m_timeout = value;
 }

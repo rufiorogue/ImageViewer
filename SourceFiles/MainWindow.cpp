@@ -213,3 +213,14 @@ void MainWindow::deleteImage()
 
     m_imageView->closeImage();
 }
+
+void MainWindow::keyPressEvent(QKeyEvent* event)
+{
+    if (event->key() == Qt::Key_Escape) {
+        if (isFullScreen()) {
+            toggleFullscreen();
+        }
+    }
+
+    QWidget::keyPressEvent(event);
+}

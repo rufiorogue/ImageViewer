@@ -7,6 +7,7 @@
 
 class Control;
 class Preferences;
+class Slideshow;
 
 class PreferencesDialog : public QDialog {
 public:
@@ -23,6 +24,7 @@ private:
 
     Control* m_control;
     Preferences* m_preferences;
+    Slideshow* m_slideshow;
     QDialogButtonBox* m_buttonBox;
     QVBoxLayout* m_layout;
     QTabWidget* m_tabWidget;

@@ -39,6 +39,8 @@ private:
     void showToolBar(bool value);
     void toggleFullscreen();
 
+    void keyPressEvent(QKeyEvent* event);
+
     const int WIDTH = 30; // %
     const int HEIGHT = 30; // %
 
