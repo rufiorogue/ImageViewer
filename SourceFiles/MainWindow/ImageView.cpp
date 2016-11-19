@@ -181,3 +181,8 @@ void ImageView::closeImage()
     m_fileName = QString();
     emit updateStatusBar(this);
 }
+
+void ImageView::setBgColor(QString value)
+{
+    m_scene->setBackgroundBrush(QBrush(QColor(value)));
+}

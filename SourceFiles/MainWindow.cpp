@@ -140,7 +140,9 @@ void MainWindow::setPreferences()
 
     // Image View
     int zoomStep = m_preferences->zoomStep();
+    QString bgColorView = m_preferences->bgColorView();
     m_imageView->setZoomStep(zoomStep);
+    m_imageView->setBgColor(bgColorView);
 }
 
 void MainWindow::showToolBar(bool value)

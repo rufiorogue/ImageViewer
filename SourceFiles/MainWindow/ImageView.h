@@ -13,6 +13,7 @@ public:
     QString& fileName();
     qreal zoom();
 
+    void setBgColor(QString value);
     void setZoomStep(int value);
 
     void closeImage();
