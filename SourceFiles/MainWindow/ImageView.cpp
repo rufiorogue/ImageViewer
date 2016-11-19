@@ -186,3 +186,12 @@ void ImageView::setBgColor(QString value)
 {
     m_scene->setBackgroundBrush(QBrush(QColor(value)));
 }
+
+QPoint ImageView::resolution()
+{
+    QPoint point;
+    point.setX(m_image.rect().width());
+    point.setY(m_image.rect().height());
+
+    return (point);
+}

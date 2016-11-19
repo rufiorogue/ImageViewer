@@ -27,6 +27,9 @@ void StatusBar::update(ImageView* imageView)
     QString message;
     message += file.fileName();
     message += "    ";
+    message += QString::number(imageView->resolution().x())
+        + "x" + QString::number(imageView->resolution().y());
+    message += "    ";
     message += QString::number(imageView->zoom()) + "%";
 
     m_message->setText(message);

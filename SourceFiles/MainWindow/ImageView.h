@@ -11,6 +11,7 @@ public:
     ~ImageView();
 
     QString& fileName();
+    QPoint resolution();
     qreal zoom();
 
     void setBgColor(QString value);
