@@ -15,6 +15,7 @@ public:
     bool showMenu();
     bool showStatusBar();
     bool showToolBar();
+    QString sortBy();
     int zoomStep();
     int timeout();
 
@@ -23,6 +24,7 @@ public:
     void setShowMenuBar(bool value);
     void setShowStatusBar(bool value);
     void setShowToolBar(bool value);
+    void setSortBy(QString value);
     void setTimeout(int value);
     void setZoomStep(int value);
 
@@ -34,4 +36,5 @@ private:
     int m_zoomStep;
     QString m_bgColorView;
     QString m_bgColorSlideshow;
+    QString m_sortBy;
 };

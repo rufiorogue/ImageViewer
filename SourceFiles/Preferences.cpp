@@ -17,6 +17,7 @@ void Preferences::load()
     m_showMenuBar = value("showMenuBar", true).toBool();
     m_showStatusBar = value("showStatusBar", true).toBool();
     m_showToolBar = value("showToolBar", true).toBool();
+    m_sortBy = value("sortBy", "filename").toString();
     m_timeout = value("timeout", 5).toInt();
     m_zoomStep = value("zoomStep", 25).toInt();
 }
@@ -28,6 +29,7 @@ void Preferences::save()
     setValue("showMenuBar", m_showMenuBar);
     setValue("showStatusBar", m_showStatusBar);
     setValue("showToolBar", m_showToolBar);
+    setValue("sortBy", m_sortBy);
     setValue("timeout", m_timeout);
     setValue("zoomStep", m_zoomStep);
 }
@@ -100,4 +102,14 @@ QString Preferences::bgColorSlideshow()
 void Preferences::setBgColorSlideshow(QString value)
 {
     m_bgColorSlideshow = value;
+}
+
+QString Preferences::sortBy()
+{
+    return (m_sortBy);
+}
+
+void Preferences::setSortBy(QString value)
+{
+    m_sortBy = value;
 }

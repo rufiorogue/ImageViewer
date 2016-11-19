@@ -39,6 +39,7 @@ private:
     void showMenuBar(bool value);
     void showStatusBar(bool value);
     void showToolBar(bool value);
+    void sortBy();
     void toggleFullscreen();
 
     void updateTitleBar(QString string);

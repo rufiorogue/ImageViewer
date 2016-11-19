@@ -75,6 +75,10 @@ void MainWindow::setConnections()
     // Menu -> Edit
     connect(m_menuEdit->preferences(), &QAction::triggered, this,
         &MainWindow::openPreferences);
+    connect(m_menuEdit->sortByDate(), &QAction::triggered, this,
+        &MainWindow::sortBy);
+    connect(m_menuEdit->sortByFileName(), &QAction::triggered, this,
+        &MainWindow::sortBy);
 
     // Menu -> File
     connect(m_menuFile->open(), &QAction::triggered, this,
@@ -137,20 +141,32 @@ void MainWindow::setPreferences()
     m_menuView->showMenuBar()->setChecked(showMenu);
     (showMenu) ? m_menuBar->show() : m_menuBar->hide();
 
+    QString sortBy = m_preferences->sortBy();
+    if (sortBy == "date") {
+        m_menuEdit->sortByDate()->setChecked(true);
+        m_file->setSorting(QDir::Time);
+    } else if (sortBy == "filename") {
+        m_menuEdit->sortByFileName()->setChecked(true);
+        m_file->setSorting(QDir::Name);
+    }
+
     // Tool Bar
     bool showToolBar = m_preferences->showToolBar();
     m_menuView->showToolBar()->setChecked(showToolBar);
     (showToolBar) ? m_toolBar->show() : m_toolBar->hide();
+
 
     // Status Bar
     bool showStatusBar = m_preferences->showStatusBar();
     m_menuView->showStatusBar()->setChecked(showStatusBar);
     (showStatusBar) ? m_statusBar->show() : m_statusBar->hide();
 
+
     // Image View
     int zoomStep = m_preferences->zoomStep();
-    QString bgColorView = m_preferences->bgColorView();
     m_imageView->setZoomStep(zoomStep);
+
+    QString bgColorView = m_preferences->bgColorView();
     m_imageView->setBgColor(bgColorView);
 }
 
@@ -239,4 +255,15 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
 void MainWindow::updateTitleBar(QString string)
 {
     setWindowTitle("Image Viewer - " + string);
+}
+
+void MainWindow::sortBy()
+{
+    if (m_menuEdit->sortByDate()->isChecked()) {
+        m_preferences->setSortBy("date");
+    } else if (m_menuEdit->sortByFileName()->isChecked()) {
+        m_preferences->setSortBy("filename");
+    }
+
+    setPreferences();
 }
