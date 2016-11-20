@@ -43,6 +43,7 @@ void MainWindow::setup()
     setPreferences();
     setSize();
     setStatusBar(m_statusBar);
+    setWindowIcon(QIcon("Images/application.svg"));
     setWindowTitle("Image Viewer");
 }
 
