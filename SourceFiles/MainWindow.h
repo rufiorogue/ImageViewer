@@ -40,6 +40,7 @@ private:
     void showStatusBar(bool value);
     void showToolBar(bool value);
     void sortBy();
+    void sortByAdvanced();
     void toggleFullscreen();
 
     void updateTitleBar(QString string);

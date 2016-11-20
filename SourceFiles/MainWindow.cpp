@@ -76,10 +76,14 @@ void MainWindow::setConnections()
     // Menu -> Edit
     connect(m_menuEdit->preferences(), &QAction::triggered, this,
         &MainWindow::openPreferences);
+    connect(m_menuEdit->sortAscending(), &QAction::triggered, this,
+        &MainWindow::sortByAdvanced);
     connect(m_menuEdit->sortByDate(), &QAction::triggered, this,
         &MainWindow::sortBy);
     connect(m_menuEdit->sortByFileName(), &QAction::triggered, this,
         &MainWindow::sortBy);
+    connect(m_menuEdit->sortDescending(), &QAction::triggered, this,
+        &MainWindow::sortByAdvanced);
 
     // Menu -> File
     connect(m_menuFile->open(), &QAction::triggered, this,
@@ -153,6 +157,15 @@ void MainWindow::setPreferences()
     } else if (sortBy == "filename") {
         m_menuEdit->sortByFileName()->setChecked(true);
         m_file->setSorting(QDir::Name);
+    }
+
+    QString sortByAdvanced = m_preferences->sortByAdvanced();
+    if (sortByAdvanced == "ascending") {
+        m_menuEdit->sortAscending()->setChecked(true);
+        m_file->setSorting(m_file->sorting() & ~QDir::Reversed);
+    } else if (sortByAdvanced == "descending") {
+        m_menuEdit->sortDescending()->setChecked(true);
+        m_file->setSorting(m_file->sorting() | QDir::Reversed);
     }
 
     // Tool Bar
@@ -268,6 +281,17 @@ void MainWindow::sortBy()
         m_preferences->setSortBy("date");
     } else if (m_menuEdit->sortByFileName()->isChecked()) {
         m_preferences->setSortBy("filename");
+    }
+
+    setPreferences();
+}
+
+void MainWindow::sortByAdvanced()
+{
+    if (m_menuEdit->sortAscending()->isChecked()) {
+        m_preferences->setSortByAdvanced("ascending");
+    } else if (m_menuEdit->sortDescending()->isChecked()) {
+        m_preferences->setSortByAdvanced("descending");
     }
 
     setPreferences();

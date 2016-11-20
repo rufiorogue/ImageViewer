@@ -4,9 +4,12 @@ Menu::Edit::Edit(QWidget* parent)
     : QMenu(parent)
 {
     m_preferences = new QAction(this);
+    m_sortAscending = new QAction(this);
     m_sortByDate = new QAction(this);
     m_sortByFileName = new QAction(this);
+    m_sortDescending = new QAction(this);
     m_sortGroup = new QActionGroup(this);
+    m_sortGroupAdvanced = new QActionGroup(this);
 
     setup();
 }
@@ -35,6 +38,21 @@ void Menu::Edit::setup()
     m_sortByFileName->setText("Sort By Filename");
     sorting->addAction(m_sortByFileName);
 
+    // Edit -> Sorting -> Separator
+    sorting->addSeparator();
+
+    // Edit -> Sorting -> Ascending
+    m_sortAscending->setActionGroup(m_sortGroupAdvanced);
+    m_sortAscending->setCheckable(true);
+    m_sortAscending->setText("Ascending");
+    sorting->addAction(m_sortAscending);
+
+    // Edit -> Sorting -> Descending
+    m_sortDescending->setActionGroup(m_sortGroupAdvanced);
+    m_sortDescending->setCheckable(true);
+    m_sortDescending->setText("Descending");
+    sorting->addAction(m_sortDescending);
+
     // Edit -> Separator
     addSeparator();
 
@@ -57,4 +75,14 @@ QAction* Menu::Edit::sortByDate()
 QAction* Menu::Edit::sortByFileName()
 {
     return (m_sortByFileName);
+}
+
+QAction* Menu::Edit::sortAscending()
+{
+    return (m_sortAscending);
+}
+
+QAction* Menu::Edit::sortDescending()
+{
+    return (m_sortDescending);
 }
