@@ -7,9 +7,9 @@ ToolBar::ToolBar(QWidget* parent)
     m_fullScreen = new QAction(this);
     m_nextFile = new QAction(this);
     m_openFile = new QAction(this);
-    m_playSlideshow = new QAction(this);
     m_previousFile = new QAction(this);
     m_saveFile = new QAction(this);
+    m_slideshow = new QAction(this);
     m_spacerOne = new QWidget(this);
     m_spacerTwo = new QWidget(this);
     m_zoomFit = new QAction(this);
@@ -60,9 +60,9 @@ void ToolBar::setActions()
     addAction(m_previousFile);
 
     // Play Slideshow
-    m_playSlideshow->setIcon(QIcon("Images/play-slideshow.png"));
-    m_playSlideshow->setText("Play slideshow");
-    addAction(m_playSlideshow);
+    m_slideshow->setIcon(QIcon("Images/play.png"));
+    m_slideshow->setText("Play slideshow");
+    addAction(m_slideshow);
 
     // Next Image
     m_nextFile->setIcon(QIcon("Images/next.png"));
@@ -112,9 +112,9 @@ QAction* ToolBar::fullscreen()
     return (m_fullScreen);
 }
 
-QAction* ToolBar::playSlideshow()
+QAction* ToolBar::slideshow()
 {
-    return (m_playSlideshow);
+    return (m_slideshow);
 }
 
 QAction* ToolBar::saveFile()

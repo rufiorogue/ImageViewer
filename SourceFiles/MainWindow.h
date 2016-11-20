@@ -7,6 +7,7 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QMenuBar>
+#include <QTimer>
 
 class File;
 class ImageView;
@@ -36,12 +37,14 @@ private:
     void openImage();
     void openPreferences();
     void saveImage();
+    void slideshowStep();
     void showMenuBar(bool value);
     void showStatusBar(bool value);
     void showToolBar(bool value);
     void sortBy();
     void sortByAdvanced();
     void toggleFullscreen();
+    void toggleSlideshow();
 
     void updateTitleBar(QString string);
 
@@ -50,10 +53,13 @@ private:
     const int WIDTH = 30; // %
     const int HEIGHT = 30; // %
 
+    bool m_slideshowRunning;
+
     File* m_file;
     ImageView* m_imageView;
     Preferences* m_preferences;
     QMenuBar* m_menuBar;
+    QTimer* m_timer;
     StatusBar* m_statusBar;
     ToolBar* m_toolBar;
     Menu::Edit* m_menuEdit;

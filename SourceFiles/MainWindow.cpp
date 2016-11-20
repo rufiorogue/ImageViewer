@@ -21,7 +21,9 @@ MainWindow::MainWindow(QWidget* parent)
     m_menuFile = new Menu::File(this);
     m_menuView = new Menu::View(this);
     m_preferences = new Preferences(this);
+    m_slideshowRunning = false;
     m_statusBar = new StatusBar(this);
+    m_timer = new QTimer();
     m_toolBar = new ToolBar(this);
 
     setup();
@@ -32,6 +34,7 @@ MainWindow::~MainWindow()
     m_preferences->save();
 
     delete m_file;
+    delete m_timer;
 }
 
 void MainWindow::setup()
@@ -70,6 +73,9 @@ void MainWindow::openImage()
 
 void MainWindow::setConnections()
 {
+    // Main Window
+    connect(m_timer, &QTimer::timeout, this, &MainWindow::slideshowStep);
+
     // File
     connect(m_file, &File::updateTitleBar, this, &MainWindow::updateTitleBar);
 
@@ -119,6 +125,8 @@ void MainWindow::setConnections()
         &ImageView::previousImage);
     connect(m_toolBar->saveFile(), &QAction::triggered, this,
         &MainWindow::saveImage);
+    connect(m_toolBar->slideshow(), &QAction::triggered, this,
+        &MainWindow::toggleSlideshow);
     connect(m_toolBar->zoomFit(), &QAction::triggered, m_imageView,
         &ImageView::zoomFit);
     connect(m_toolBar->zoomOriginal(), &QAction::triggered, m_imageView,
@@ -146,10 +154,6 @@ void MainWindow::setMenu()
 void MainWindow::setPreferences()
 {
     // Menu
-    bool showMenu = m_preferences->showMenu();
-    m_menuView->showMenuBar()->setChecked(showMenu);
-    (showMenu) ? m_menuBar->show() : m_menuBar->hide();
-
     QString sortBy = m_preferences->sortBy();
     if (sortBy == "date") {
         m_menuEdit->sortByDate()->setChecked(true);
@@ -168,24 +172,28 @@ void MainWindow::setPreferences()
         m_file->setSorting(m_file->sorting() | QDir::Reversed);
     }
 
-    // Tool Bar
+    bool showMenu = m_preferences->showMenu();
+    m_menuView->showMenuBar()->setChecked(showMenu);
+    (showMenu) ? m_menuBar->show() : m_menuBar->hide();
+
     bool showToolBar = m_preferences->showToolBar();
     m_menuView->showToolBar()->setChecked(showToolBar);
     (showToolBar) ? m_toolBar->show() : m_toolBar->hide();
 
-
-    // Status Bar
     bool showStatusBar = m_preferences->showStatusBar();
     m_menuView->showStatusBar()->setChecked(showStatusBar);
     (showStatusBar) ? m_statusBar->show() : m_statusBar->hide();
 
 
-    // Image View
-    int zoomStep = m_preferences->zoomStep();
-    m_imageView->setZoomStep(zoomStep);
-
+    // Preferences Dialog
     QString bgColorView = m_preferences->bgColorView();
     m_imageView->setBgColor(bgColorView);
+
+    int timeout = m_preferences->timeout();
+    m_timer->setInterval(timeout * 1000);
+
+    int zoomStep = m_preferences->zoomStep();
+    m_imageView->setZoomStep(zoomStep);
 }
 
 void MainWindow::showToolBar(bool value)
@@ -295,4 +303,26 @@ void MainWindow::sortByAdvanced()
     }
 
     setPreferences();
+}
+
+void MainWindow::toggleSlideshow()
+{
+    if (m_slideshowRunning) {
+        m_timer->stop();
+
+        m_toolBar->slideshow()->setIcon(QIcon("Images/play.png"));
+        m_imageView->setBgColor(m_preferences->bgColorView());
+    } else {
+        m_imageView->setBgColor(m_preferences->bgColorSlideshow());
+        m_toolBar->slideshow()->setIcon(QIcon("Images/pause.png"));
+
+        m_timer->start();
+    }
+
+    m_slideshowRunning = !m_slideshowRunning;
+}
+
+void MainWindow::slideshowStep()
+{
+    m_imageView->nextImage();
 }

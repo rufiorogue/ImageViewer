@@ -12,7 +12,7 @@ public:
     QAction* nextFile();
     QAction* openFile();
     QAction* saveFile();
-    QAction* playSlideshow();
+    QAction* slideshow();
     QAction* previousFile();
     QAction* zoomFit();
     QAction* zoomOriginal();
@@ -25,7 +25,7 @@ private:
     QAction* m_fullScreen;
     QAction* m_nextFile;
     QAction* m_openFile;
-    QAction* m_playSlideshow;
+    QAction* m_slideshow;
     QAction* m_previousFile;
     QAction* m_saveFile;
     QAction* m_zoomFit;
