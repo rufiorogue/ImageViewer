@@ -1,4 +1,7 @@
+# Set CMake Version Required
 cmake_minimum_required(VERSION 2.8)
+
+# Set Project Name
 project(ImageViewer)
 
 # Set Compiler
@@ -23,3 +26,6 @@ add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 # Link Libraries
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Gui Qt5::Widgets)
+
+# Copy Images
+file(COPY Images DESTINATION ${CMAKE_BINARY_DIR})
