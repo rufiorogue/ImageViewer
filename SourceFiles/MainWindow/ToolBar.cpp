@@ -5,8 +5,10 @@ ToolBar::ToolBar(QWidget* parent)
 {
     m_deleteFile = new QAction(this);
     m_fullScreen = new QAction(this);
+    m_nextFile = new QAction(this);
     m_openFile = new QAction(this);
     m_playSlideshow = new QAction(this);
+    m_previousFile = new QAction(this);
     m_saveFile = new QAction(this);
     m_spacerOne = new QWidget(this);
     m_spacerTwo = new QWidget(this);
@@ -52,10 +54,20 @@ void ToolBar::setActions()
     m_spacerOne->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     addWidget(m_spacerOne);
 
+    // Previous Image
+    m_previousFile->setIcon(QIcon("Images/previous.png"));
+    m_previousFile->setText("Previous images");
+    addAction(m_previousFile);
+
     // Play Slideshow
     m_playSlideshow->setIcon(QIcon("Images/play-slideshow.png"));
     m_playSlideshow->setText("Play slideshow");
     addAction(m_playSlideshow);
+
+    // Next Image
+    m_nextFile->setIcon(QIcon("Images/next.png"));
+    m_nextFile->setText("Next image");
+    addAction(m_nextFile);
 
     // Spacer
     m_spacerTwo->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -113,4 +125,14 @@ QAction* ToolBar::saveFile()
 QAction* ToolBar::deleteFile()
 {
     return (m_deleteFile);
+}
+
+QAction* ToolBar::nextFile()
+{
+    return (m_nextFile);
+}
+
+QAction* ToolBar::previousFile()
+{
+    return (m_previousFile);
 }

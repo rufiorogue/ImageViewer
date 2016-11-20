@@ -1,8 +1,11 @@
 #include "ImageView.h"
 
-ImageView::ImageView(QWidget* parent)
+#include "../File.h"
+
+ImageView::ImageView(File* file, QWidget* parent)
     : QGraphicsView(parent)
 {
+    m_file = file;
     m_scene = new QGraphicsScene(this);
 
     setup();
@@ -12,8 +15,12 @@ ImageView::~ImageView()
 {
 }
 
-void ImageView::loadImage(QString& fileName)
+void ImageView::loadImage(QString fileName)
 {
+    if (fileName.isNull()) {
+        return;
+    }
+
     if (!m_fileName.isNull()) {
         closeImage();
     }
@@ -168,7 +175,7 @@ void ImageView::rotateRight()
     rotate(90);
 }
 
-void ImageView::saveImage(QString& fileName)
+void ImageView::saveImage(QString fileName)
 {
     if (!m_image.save(fileName)) {
         return;
@@ -195,4 +202,14 @@ QPoint ImageView::resolution()
     point.setY(m_image.rect().height());
 
     return (point);
+}
+
+void ImageView::nextImage()
+{
+    loadImage(m_file->next());
+}
+
+void ImageView::previousImage()
+{
+    loadImage(m_file->previous());
 }

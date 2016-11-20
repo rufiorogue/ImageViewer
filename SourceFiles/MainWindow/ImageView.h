@@ -3,11 +3,13 @@
 #include <QGraphicsView>
 #include <QMouseEvent>
 
+class File;
+
 class ImageView : public QGraphicsView {
     Q_OBJECT
 
 public:
-    ImageView(QWidget* parent = Q_NULLPTR);
+    ImageView(File* file, QWidget* parent = Q_NULLPTR);
     ~ImageView();
 
     QString& fileName();
@@ -18,8 +20,10 @@ public:
     void setZoomStep(int value);
 
     void closeImage();
-    void loadImage(QString& fileName);
-    void saveImage(QString& fileName);
+    void loadImage(QString fileName);
+    void nextImage();
+    void previousImage();
+    void saveImage(QString fileName);
     void rotateLeft();
     void rotateRight();
     void zoomFit();
@@ -45,6 +49,7 @@ private:
     QImage m_image;
     QString m_fileName;
 
+    File* m_file;
     QGraphicsScene* m_scene;
 
 signals:

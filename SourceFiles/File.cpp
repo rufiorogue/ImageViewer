@@ -35,3 +35,27 @@ int File::index()
 {
     return (m_index + 1);
 }
+
+QString File::next()
+{
+    if (m_index + 1 >= size()) {
+        return (QString());
+    }
+
+    QString fileName = entryInfoList().at(++m_index).absoluteFilePath();
+    current(fileName);
+
+    return (fileName);
+}
+
+QString File::previous()
+{
+    if (m_index - 1 < 0) {
+        return (QString());
+    }
+
+    QString fileName = entryInfoList().at(--m_index).absoluteFilePath();
+    current(fileName);
+
+    return (fileName);
+}

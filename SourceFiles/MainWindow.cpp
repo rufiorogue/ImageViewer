@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
 {
     m_file = new File();
-    m_imageView = new ImageView(this);
+    m_imageView = new ImageView(m_file, this);
     m_menuBar = menuBar();
     m_menuEdit = new Menu::Edit(this);
     m_menuFile = new Menu::File(this);
@@ -106,8 +106,12 @@ void MainWindow::setConnections()
         &MainWindow::deleteImage);
     connect(m_toolBar->fullscreen(), &QAction::triggered, this,
         &MainWindow::toggleFullscreen);
+    connect(m_toolBar->nextFile(), &QAction::triggered, m_imageView,
+        &ImageView::nextImage);
     connect(m_toolBar->openFile(), &QAction::triggered, this,
         &MainWindow::openImage);
+    connect(m_toolBar->previousFile(), &QAction::triggered, m_imageView,
+        &ImageView::previousImage);
     connect(m_toolBar->saveFile(), &QAction::triggered, this,
         &MainWindow::saveImage);
     connect(m_toolBar->zoomFit(), &QAction::triggered, m_imageView,

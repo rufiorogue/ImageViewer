@@ -9,9 +9,11 @@ public:
 
     QAction* deleteFile();
     QAction* fullscreen();
+    QAction* nextFile();
     QAction* openFile();
     QAction* saveFile();
     QAction* playSlideshow();
+    QAction* previousFile();
     QAction* zoomFit();
     QAction* zoomOriginal();
 
@@ -21,8 +23,10 @@ private:
 
     QAction* m_deleteFile;
     QAction* m_fullScreen;
+    QAction* m_nextFile;
     QAction* m_openFile;
     QAction* m_playSlideshow;
+    QAction* m_previousFile;
     QAction* m_saveFile;
     QAction* m_zoomFit;
     QAction* m_zoomOriginal;

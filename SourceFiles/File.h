@@ -11,6 +11,8 @@ public:
 
     void current(QString fileName);
     int index();
+    QString next();
+    QString previous();
     int size();
 
 private:
