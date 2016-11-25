@@ -45,6 +45,8 @@ void PreferencesDialog::setWidgets()
 
 void PreferencesDialog::load()
 {
+    m_control->setKeyNextImage(m_preferences->keyNextImage());
+    m_control->setKeyPreviousImage(m_preferences->keyPreviousImage());
     m_control->setZoomStep(m_preferences->zoomStep());
     m_display->setBgColorSlideshow(m_preferences->bgColorSlideshow());
     m_display->setBgColorView(m_preferences->bgColorView());
@@ -55,6 +57,8 @@ void PreferencesDialog::save()
 {
     m_preferences->setBgColorSlideshow(m_display->bgColorSlideshow());
     m_preferences->setBgColorView(m_display->bgColorView());
+    m_preferences->setKeyNextImage(m_control->keyNextImage());
+    m_preferences->setKeyPreviousImage(m_control->keyPreviousImage());
     m_preferences->setTimeout(m_slideshow->timeout());
     m_preferences->setZoomStep(m_control->zoomStep());
 }

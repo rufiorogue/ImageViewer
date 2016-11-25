@@ -12,6 +12,8 @@ public:
 
     QString bgColorSlideshow();
     QString bgColorView();
+    int keyNextImage();
+    int keyPreviousImage();
     bool showMenu();
     bool showStatusBar();
     bool showToolBar();
@@ -22,6 +24,8 @@ public:
 
     void setBgColorSlideshow(QString value);
     void setBgColorView(QString value);
+    void setKeyNextImage(int value);
+    void setKeyPreviousImage(int value);
     void setShowMenuBar(bool value);
     void setShowStatusBar(bool value);
     void setShowToolBar(bool value);
@@ -34,6 +38,8 @@ private:
     bool m_showMenuBar;
     bool m_showStatusBar;
     bool m_showToolBar;
+    int m_keyNextImage;
+    int m_keyPreviousImage;
     int m_timeout;
     int m_zoomStep;
     QString m_bgColorView;

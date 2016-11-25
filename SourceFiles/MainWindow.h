@@ -1,6 +1,5 @@
 #pragma once
 
-#include <QDebug>
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QFileDialog>
@@ -48,6 +47,7 @@ private:
 
     void updateTitleBar(QString string);
 
+    bool eventFilter(QObject* watched, QEvent* event);
     void keyPressEvent(QKeyEvent* event);
 
     const int WIDTH = 30; // %

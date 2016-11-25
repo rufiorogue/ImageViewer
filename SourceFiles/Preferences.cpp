@@ -14,6 +14,8 @@ void Preferences::load()
 {
     m_bgColorSlideshow = value("bgColorSlideshow", "#ffffff").toString();
     m_bgColorView = value("bgColorView", "#ffffff").toString();
+    m_keyNextImage = value("keyNextImage", Qt::Key_Right).toInt();
+    m_keyPreviousImage = value("keyPreviousImage", Qt::Key_Left).toInt();
     m_showMenuBar = value("showMenuBar", true).toBool();
     m_showStatusBar = value("showStatusBar", true).toBool();
     m_showToolBar = value("showToolBar", true).toBool();
@@ -27,6 +29,8 @@ void Preferences::save()
 {
     setValue("bgColorSlideshow", m_bgColorSlideshow);
     setValue("bgColorView", m_bgColorView);
+    setValue("keyNextImage", m_keyNextImage);
+    setValue("keyPreviousImage", m_keyPreviousImage);
     setValue("showMenuBar", m_showMenuBar);
     setValue("showStatusBar", m_showStatusBar);
     setValue("showToolBar", m_showToolBar);
@@ -124,4 +128,24 @@ QString Preferences::sortByAdvanced()
 void Preferences::setSortByAdvanced(QString value)
 {
     m_sortByAdvanvced = value;
+}
+
+int Preferences::keyNextImage()
+{
+    return (m_keyNextImage);
+}
+
+int Preferences::keyPreviousImage()
+{
+    return (m_keyPreviousImage);
+}
+
+void Preferences::setKeyNextImage(int value)
+{
+    m_keyNextImage = value;
+}
+
+void Preferences::setKeyPreviousImage(int value)
+{
+    m_keyPreviousImage = value;
 }

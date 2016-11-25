@@ -26,6 +26,8 @@ MainWindow::MainWindow(QWidget* parent)
     m_timer = new QTimer();
     m_toolBar = new ToolBar(this);
 
+    m_imageView->installEventFilter(this);
+
     setup();
 }
 
@@ -262,9 +264,8 @@ void MainWindow::deleteImage()
 
     if (answer == QMessageBox::Ok) {
         QFile::remove(fileInfo.absoluteFilePath());
+        m_imageView->closeImage();
     }
-
-    m_imageView->closeImage();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event)
@@ -273,9 +274,11 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
         if (isFullScreen()) {
             toggleFullscreen();
         }
+    } else if (event->key() == m_preferences->keyNextImage()) {
+        m_imageView->nextImage();
+    } else if (event->key() == m_preferences->keyPreviousImage()) {
+        m_imageView->previousImage();
     }
-
-    QWidget::keyPressEvent(event);
 }
 
 void MainWindow::updateTitleBar(QString string)
@@ -325,4 +328,14 @@ void MainWindow::toggleSlideshow()
 void MainWindow::slideshowStep()
 {
     m_imageView->nextImage();
+}
+
+bool MainWindow::eventFilter(QObject* watched, QEvent* event)
+{
+    if (event->type() == QEvent::KeyPress) {
+        keyPressEvent(reinterpret_cast<QKeyEvent*>(event));
+        return (true);
+    }
+
+    return (QMainWindow::eventFilter(watched, event));
 }
