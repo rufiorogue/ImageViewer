@@ -26,6 +26,7 @@ void Display::setWidgets()
     m_selectColorView->setStyleSheet(
         "QPushButton { background-color: #ffffff; }");
 
+    m_layout->setAlignment(Qt::AlignTop);
     m_layout->addLayout(backgroundColorSelection());
 }
 
@@ -53,10 +54,10 @@ QGridLayout* Display::backgroundColorSelection()
 
     layout->addWidget(new QLabel("<b>Background color</b>", this), 0, 0);
 
-    layout->addWidget(new QLabel("\tView mode", this), 1, 0);
+    layout->addWidget(new QLabel("View mode", this), 1, 0);
     layout->addWidget(m_selectColorView, 1, 1);
 
-    layout->addWidget(new QLabel("\tSlideshow mode", this), 2, 0);
+    layout->addWidget(new QLabel("Slideshow mode", this), 2, 0);
     layout->addWidget(m_selectColorSlideshow, 2, 1);
 
     return (layout);

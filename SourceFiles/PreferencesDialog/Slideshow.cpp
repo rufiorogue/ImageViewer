@@ -25,6 +25,8 @@ void Slideshow::setWidgets()
 {
     m_timeoutSlider->setOrientation(Qt::Orientation::Horizontal);
     m_timeoutSlider->setRange(1, 100);
+
+    m_layout->setAlignment(Qt::AlignTop);
     m_layout->addWidget(m_timeoutLabel);
     m_layout->addWidget(m_timeoutSlider);
 }

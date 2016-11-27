@@ -28,8 +28,11 @@ void Control::setWidgets()
 {
     m_zoomStepSlider->setOrientation(Qt::Orientation::Horizontal);
     m_zoomStepSlider->setRange(1, 100);
+
+    m_layout->setAlignment(Qt::AlignTop);
     m_layout->addWidget(m_zoomStepLabel);
     m_layout->addWidget(m_zoomStepSlider);
+    m_layout->addSpacing(10);
     m_layout->addLayout(keySettings());
 }
 
@@ -70,10 +73,10 @@ QGridLayout* Control::keySettings()
 
     layout->addWidget(new QLabel("<b>Key Settings</b>", this), 0, 0);
 
-    layout->addWidget(new QLabel("\tPrevious image", this), 1, 0);
+    layout->addWidget(new QLabel("Previous image", this), 1, 0);
     layout->addWidget(m_keyPreviousImageButton, 1, 1);
 
-    layout->addWidget(new QLabel("\tNext image", this), 2, 0);
+    layout->addWidget(new QLabel("Next image", this), 2, 0);
     layout->addWidget(m_keyNextImageButton, 2, 1);
 
     return (layout);
