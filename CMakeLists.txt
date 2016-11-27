@@ -29,3 +29,6 @@ target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Gui Qt5::Widgets)
 
 # Copy Images
 file(COPY Images DESTINATION ${CMAKE_BINARY_DIR})
+
+# Add "make run" command
+add_custom_target(run COMMAND ${PROJECT_NAME} DEPENDS ${PROJECT_NAME} WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
