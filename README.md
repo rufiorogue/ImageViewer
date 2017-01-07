@@ -16,7 +16,7 @@ It tries to mimic usability of default image viewer of Windows 7.
 ## Dependencies
 Qt 5
 
-## Build & Run
+## Building
 ##### 1. Clone
 ```shell
 git clone https://github.com/aldn/ImageViewer.git
@@ -32,11 +32,16 @@ qmake ..
 ```shell
 make
 ```
-##### 4. Run
+
+## Running
+##### Usage
 ```shell
-./ImageViewer
+./ImageViewer [IMAGE_FILE]
 ```
-Note: it tries to use icons from the current icon theme. Most of the time Qt should properly detect platform icon theme. However if running outside of desktop environment session (such as Gnome, KDE or XFCE), environment variable DESKTOP_SESSION should be set manually, otherwise most of the icons might be missing.
+
+##### Note
+
+It tries to use icons from the current icon theme. Most of the time Qt should properly detect platform icon theme. However if running outside of desktop environment session (such as Gnome, KDE or XFCE), environment variable DESKTOP_SESSION should be set manually, otherwise most of the icons might be missing.
 E.g. put something like this to startup script:
 ```shell
 export DESKTOP_SESSION=gnome
