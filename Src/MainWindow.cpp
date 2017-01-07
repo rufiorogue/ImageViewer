@@ -119,10 +119,7 @@ void MainWindow::setConnections()
 
     connect(ui->actionZoomFit, &QAction::toggled, m_preferences,  &Preferences::set_zoomFit);
 
-    connect(m_editZoom, &QLineEdit::editingFinished, [=]{
-        QString percentStr = m_editZoom->text();
-        qreal zoom = percentStr.left(percentStr.size()-1).toDouble()*0.01;
-        ui->imageView->zoomArbitrary(zoom); } );
+    connect(m_editZoom, &QLineEdit::editingFinished, this, &MainWindow::zoomEditingFinished);
 }
 
 
@@ -356,5 +353,19 @@ void MainWindow::fileChanged(const QString &fileName, const QImage &image)
     setWindowTitle(title);
 }
 
-
+void MainWindow::zoomEditingFinished()
+{
+    QRegExp regExp("[\\d.,]+");
+    int pos = regExp.indexIn(m_editZoom->text(), 0);
+    if (pos != -1)
+    {
+        const QString percentStr = regExp.cap(0);
+        qDebug()<<"edited zoom value:"<<percentStr;
+        if (!percentStr.isEmpty())
+        {
+            qreal zoom = percentStr.toDouble()*0.01;
+            ui->imageView->zoomArbitrary(zoom);
+        }
+    }
+}
 

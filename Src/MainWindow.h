@@ -35,9 +35,10 @@ private slots:
     void fullscreen();
     void slideshow();
     void zoomFit(bool value);
-    void fileChanged(const QString &fileName, const QImage &image);
     void options();
     void about();
+    void fileChanged(const QString &fileName, const QImage &image);
+    void zoomEditingFinished();
 
 private:
     void setup();
