@@ -44,6 +44,6 @@ make
 It tries to use icons from the current icon theme. Most of the time Qt should properly detect platform icon theme. However if running outside of desktop environment session (such as Gnome, KDE or XFCE), environment variable XDG_CURRENT_DESKTOP should be set manually, otherwise most of the icons might be missing.
 E.g. put something like this to startup script:
 ```shell
-export XDG_CURRENT_DESKTOP=gnome
+export XDG_CURRENT_DESKTOP=GNOME
 ```
-To use selected Gnome icon theme.
+To use selected GNOME icon theme.
